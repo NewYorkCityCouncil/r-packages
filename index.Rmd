@@ -1,6 +1,6 @@
 ---
 title: "R Packages"
-subtitle: "Or, The Best Way to Distribute Anything Ever"  
+subtitle: "Or, The Best Way to Share Anything Ever"  
 author: "Nick Solomon | New York City Council"
 date: 'October 19, 2018'
 output:
@@ -149,7 +149,7 @@ If your project is a package then:
 
 ---
 
-# Things that will make your life easier
+## Things that will make your life easier
 --
 
 - RStudio
@@ -159,6 +159,28 @@ If your project is a package then:
 --
 
 - `roxygen2`
+
+---
+
+## The first step
+--
+
+- `DESCRIPTION`
+
+```
+Package: bbl
+Type: Package
+Title: Estimate Tax-lot Level Population
+Version: 0.1.0.9000
+Authors@R: person("Nick", "Solomon", 
+                  email = "nsolomon@council.nyc.gov",
+                  role = c("aut", "cre"))
+Description: This package uses the New York City 
+    PLUTO dataset and ACS 2015 estimates to 
+    create population estimates at the tax lot
+    level.
+License: MIT + file LICENSE
+```
 
 ---
 
@@ -324,6 +346,12 @@ Imports: dplyr,
     rlang
 ...
 ```
+--
+
+- Other ways of specifiying dependencies
+--
+
+  - Not as common
 
 ---
 
@@ -333,12 +361,151 @@ class: center, middle, inverse
 
 ---
 
+## Including data in an R package
+--
+
+- `data/`
+--
+
+- `devtools::use_data()`
+--
+
+- `data-raw/`
+--
+
+  - CSV and code to clean data
+
+---
+
+## Documenting data
+--
+
+- Make `R/data.R`
+--
+
+
+```
+#' Title
+#'
+#' @format A dataframe of data
+#' \describe{
+#'   \item{column}{What's in column}
+#' }
+```
+
+---
+
 class: center, middle, inverse
 
 # Vignettes
 
 ---
 
+## What is a vignette?
+--
+
+- An R Markdown or Sweave document that uses your package
+--
+
+- Long form documentation
+--
+
+  - Examples, tutorials, etc.
+--
+
+- Or a report!
+
+---
+
+## How to make a vignette
+--
+
+- `devtools::use_vignette("my-vignette")`
+--
+
+- Write!
+--
+
+
+```
+---
+title: "Vignette Title"
+author: "Vignette Author"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+Your report here!
+```
+---
+
+## Why use vignettes?
+--
+
+- Tightly couple analysis with code
+--
+
+- Separate code from results
+--
+
+- Enforce best practices
+
+---
+
+class: center, middle, inverse
+
+# Next steps
+
+---
+
+## What's next?
+--
+
+- Unit tests
+--
+
+  - `tests/`
+  - `testthat`
+--
+
+- Compiled code
+--
+
+  - `src/`
+  - C, C++, Fortran
+--
+
+- Any other file you want!
+--
+
+  - `inst/`
+  - Python, Java, Perl, etc.
+
+
+---
+
 class: center, middle, inverse
 
 # Resources
+
+---
+
+## Getting started
+
+- *Writing and R Package from Scratch* by Hilary Parker
+  - https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/
+- *R Package Primer* by Karl Broman
+  - https://kbroman.org/pkg_primer/
+  
+---
+
+## Reference
+
+- *R Packages* by Hadley Wickham
+  - http://r-pkgs.had.co.nz/
+- *Writing R Extensions* by R Core Team
+  - https://cran.r-project.org/doc/manuals/r-release/R-exts.html

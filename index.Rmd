@@ -40,6 +40,115 @@ class: center, middle, inverse
 
 ---
 
+## What is an R package?
+--
+
+- Code
+--
+
+- Documentation
+--
+
+- Data
+--
+
+- Vignettes
+
+---
+
+## What is an R package?
+--
+
+- `R/`
+--
+
+- `man/`
+--
+
+- `data/`
+--
+
+- `vignettes/`
+--
+
+- `DESCRIPTION`
+- `NAMESPACE`
+- `LICENSE`
+- `tests/`
+---
+
+## The package paradigm
+--
+
+If your project is a package then:
+--
+
+- Everything is versioned
+--
+
+- Dependencies are explicitly stated
+--
+
+  - In a machine readable way
+--
+
+- The whole project can easily be shared
+--
+
+- You can be almost certain the project is reproducible
+
+---
+
+## When to create an R package?
+--
+
+- When you write code that:
+--
+
+  - Will be shared
+--
+
+  - Will be run more than once
+--
+
+  - Will be run by someone else
+--
+
+  - Should be well documented
+--
+
+- When you have data that:
+--
+
+  - Will be shared
+--
+
+  - Has been cleaned
+--
+
+- When you write reports that:
+--
+
+  - Need to be reproducible
+--
+
+  - Will be shared
+
+---
+
+## Disadvantages of creating a package
+--
+
+- Administrative overhead
+--
+
+- A new workflow
+--
+
+- Forces best practices `r emo::ji("wink")`
+
+---
+
 class: center, middle, inverse
 
 # Code

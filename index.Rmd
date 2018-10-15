@@ -40,4 +40,30 @@ class: center, middle, inverse
 
 ---
 
+class: center, middle, inverse
 
+# Code
+
+---
+
+class: center, middle, inverse
+
+# Documentation
+
+---
+
+class: center, middle, inverse
+
+# Data
+
+---
+
+class: center, middle, inverse
+
+# Vignettes
+
+---
+
+class: center, middle, inverse
+
+# Resources

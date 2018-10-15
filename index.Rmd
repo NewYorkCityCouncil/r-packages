@@ -1,0 +1,43 @@
+---
+title: "R Packages"
+subtitle: "Or, The Best Way to Distribute Anything Ever"  
+author: "Nick Solomon | New York City Council"
+date: 'October 19, 2018'
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+```{r xaringan-themer, include=FALSE}
+library(xaringanthemer)
+
+mono_light(
+  base_color = "#2f56a6",
+  white_color = "#FFFFFF",
+  black_color = "#000000",
+  text_font_size = "28px",
+  text_font_google = google_font("Lato", "400", "400i", "700", "700i"),
+  header_font_google = google_font("Roboto Slab"),
+  header_color = darken_color("#2f56a6", .3),
+  code_inline_color = darken_color("#2f56a6", .4),
+  code_highlight_color = "rgba(88, 119, 183, .5)",
+  text_slide_number_font_size = ".7em"
+)
+```
+
+class: center, middle, inverse
+
+# What is an R package?
+
+---
+
+

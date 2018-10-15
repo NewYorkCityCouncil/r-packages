@@ -149,15 +149,181 @@ If your project is a package then:
 
 ---
 
+# Things that will make your life easier
+--
+
+- RStudio
+--
+
+- `devtools`
+--
+
+- `roxygen2`
+
+---
+
 class: center, middle, inverse
 
 # Code
 
 ---
 
+## The `R/` directory
+--
+
+- Fill your package with functions
+--
+
+- `my_function.R`:
+
+```r
+my_function <- function (x, y) {
+  return(x+y)
+}
+```
+--
+
+- Put any and all functions here
+--
+
+  - Even "private" ones that won't be available to the user of your package
+
+---
+
+## Best practices
+--
+
+- Make dependencies explicit with `::`
+--
+
+- One (public) function per file
+--
+
+---
+
 class: center, middle, inverse
 
 # Documentation
+
+---
+
+## How to write documentation
+--
+
+- In RStudio:
+--
+
+  - Code > Insert Roxygen Skeleton 
+--
+
+
+```r
+#' Title
+#'
+#' @param x 
+#' @param y 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+```
+---
+
+## What is Roxygen?
+--
+
+- Special comments in your code that documentation is made from
+--
+
+- Code and docs live together
+--
+
+- When you change one, it's easy to change the other
+
+---
+
+## Default Roxygen tags
+--
+
+- `@param`
+--
+
+  - Document what the function parameter means
+--
+
+- `@return`
+--
+
+  - What the function returns
+--
+
+- `@export`
+--
+
+  - Tell R you want this function to be public
+--
+
+- `@examples`
+--
+
+  - Include examples of how your function is used
+--
+
+  - These will be run (unless you say otherwise)
+
+
+---
+
+## Other useful Roxygen tags
+--
+
+- `@importFrom <package> <function> ...`
+--
+
+  - Make functions from packages available without `::`
+--
+
+- `@import <package>`
+--
+
+  - Make *all* functions from a package available with out `::`
+
+---
+
+## What does Roxygen do?
+--
+
+- Run `devtools::document()`
+--
+
+- `man/*.Rd`
+--
+
+- `NAMESPACE`
+--
+  
+  - Exports and imports
+
+---
+
+## What *doesn't* Roxygen do?
+--
+
+- `DESCRIPTION`
+--
+
+  - Explicitly state package dependencies
+--
+
+
+```
+...
+Imports: dplyr,
+    ggplot2 (>= 2.1.0),
+    rlang
+...
+```
 
 ---
 

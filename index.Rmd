@@ -458,6 +458,33 @@ Your report here!
 
 class: center, middle, inverse
 
+# Best practices
+---
+
+## Best practices
+--
+
+- Use Git and GitHub!
+--
+
+- `R CMD check`
+--
+
+  - `devtools::check()`
+  - Checks code for problems
+  - Undeclared dependencies
+  - Missing documentation
+  - Etc.
+--
+
+- Semantic versioning
+--
+
+  - `major.minor.patch`
+
+---
+class: center, middle, inverse
+
 # Next steps
 
 ---

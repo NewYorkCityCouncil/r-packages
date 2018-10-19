@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>R Packages</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Nick Solomon | New York City Council" />
+    <meta name="date" content="2018-10-19" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# R Packages
+## Or, The Best Way to Share Anything Ever
+### Nick Solomon | New York City Council
+### October 19, 2018
+
+---
+
+
+
+
+
+
+class: center, middle, inverse
+
+# What is an R package?
+
+---
+
+## What is an R package?
+--
+
+- Code
+--
+
+- Documentation
+--
+
+- Data
+--
+
+- Vignettes
+
+---
+
+## What is an R package?
+--
+
+- `R/`
+--
+
+- `man/`
+--
+
+- `data/`
+--
+
+- `vignettes/`
+--
+
+- `DESCRIPTION`
+- `NAMESPACE`
+- `LICENSE`
+- `tests/`
+---
+
+## The package paradigm
+--
+
+If your project is a package then:
+--
+
+- Everything is versioned
+--
+
+- Dependencies are explicitly stated
+--
+
+  - In a machine readable way
+--
+
+- The whole project can easily be shared
+--
+
+- You can be almost certain the project is reproducible
+
+---
+
+## When to create an R package?
+--
+
+- When you write code that:
+--
+
+  - Will be shared
+--
+
+  - Will be run more than once
+--
+
+  - Will be run by someone else
+--
+
+  - Should be well documented
+--
+
+- When you have data that:
+--
+
+  - Will be shared
+--
+
+  - Has been cleaned
+--
+
+- When you write reports that:
+--
+
+  - Need to be reproducible
+--
+
+  - Will be shared
+
+---
+
+## Disadvantages of creating a package
+--
+
+- Administrative overhead
+--
+
+- A new workflow
+--
+
+- Forces best practices 😉
+
+---
+
+## Things that will make your life easier
+--
+
+- RStudio
+--
+
+- `devtools`
+--
+
+- `roxygen2`
+
+---
+
+## The first step
+--
+
+- `DESCRIPTION`
+
+```
+Package: bbl
+Type: Package
+Title: Estimate Tax-lot Level Population
+Version: 0.1.0.9000
+Authors@R: person("Nick", "Solomon", 
+                  email = "nsolomon@council.nyc.gov",
+                  role = c("aut", "cre"))
+Description: This package uses the New York City 
+    PLUTO dataset and ACS 2015 estimates to 
+    create population estimates at the tax lot
+    level.
+License: MIT + file LICENSE
+```
+
+---
+
+class: center, middle, inverse
+
+# Code
+
+---
+
+## The `R/` directory
+--
+
+- Fill your package with functions
+--
+
+- `my_function.R`:
+
+```r
+my_function &lt;- function (x, y) {
+  return(x+y)
+}
+```
+--
+
+- Put any and all functions here
+--
+
+  - Even "private" ones that won't be available to the user of your package
+
+---
+
+## Best practices
+--
+
+- Make dependencies explicit with `::`
+--
+
+- One (public) function per file
+--
+
+---
+
+class: center, middle, inverse
+
+# Documentation
+
+---
+
+## How to write documentation
+--
+
+- In RStudio:
+--
+
+  - Code &gt; Insert Roxygen Skeleton 
+--
+
+
+```r
+#' Title
+#'
+#' @param x 
+#' @param y 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+```
+---
+
+## What is Roxygen?
+--
+
+- Special comments in your code that documentation is made from
+--
+
+- Code and docs live together
+--
+
+- When you change one, it's easy to change the other
+
+---
+
+## Default Roxygen tags
+--
+
+- `@param`
+--
+
+  - Document what the function parameter means
+--
+
+- `@return`
+--
+
+  - What the function returns
+--
+
+- `@export`
+--
+
+  - Tell R you want this function to be public
+--
+
+- `@examples`
+--
+
+  - Include examples of how your function is used
+--
+
+  - These will be run (unless you say otherwise)
+
+
+---
+
+## Other useful Roxygen tags
+--
+
+- `@importFrom &lt;package&gt; &lt;function&gt; ...`
+--
+
+  - Make functions from packages available without `::`
+--
+
+- `@import &lt;package&gt;`
+--
+
+  - Make *all* functions from a package available with out `::`
+
+---
+
+## What does Roxygen do?
+--
+
+- Run `devtools::document()`
+--
+
+- `man/*.Rd`
+--
+
+- `NAMESPACE`
+--
+  
+  - Exports and imports
+
+---
+
+## What *doesn't* Roxygen do?
+--
+
+- `DESCRIPTION`
+--
+
+  - Explicitly state package dependencies
+--
+
+
+```
+...
+Imports: dplyr,
+    ggplot2 (&gt;= 2.1.0),
+    rlang
+...
+```
+--
+
+- Other ways of specifiying dependencies
+--
+
+  - Not as common
+
+---
+
+class: center, middle, inverse
+
+# Data
+
+---
+
+## Including data in an R package
+--
+
+- `data/`
+--
+
+- `devtools::use_data()`
+--
+
+- `data-raw/`
+--
+
+  - CSV and code to clean data
+
+---
+
+## Documenting data
+--
+
+- Make `R/data.R`
+--
+
+
+```
+#' Title
+#'
+#' @format A dataframe of data
+#' \describe{
+#'   \item{column}{What's in column}
+#' }
+```
+
+---
+
+class: center, middle, inverse
+
+# Vignettes
+
+---
+
+## What is a vignette?
+--
+
+- An R Markdown or Sweave document that uses your package
+--
+
+- Long form documentation
+--
+
+  - Examples, tutorials, etc.
+--
+
+- Or a report!
+
+---
+
+## How to make a vignette
+--
+
+- `devtools::use_vignette("my-vignette")`
+--
+
+- Write!
+--
+
+
+```
+---
+title: "Vignette Title"
+author: "Vignette Author"
+date: "2018-10-19"
+output: rmarkdown::html_vignette
+vignette: &gt;
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+Your report here!
+```
+---
+
+## Why use vignettes?
+--
+
+- Tightly couple analysis with code
+--
+
+- Separate code from results
+--
+
+- Enforce best practices
+
+---
+
+class: center, middle, inverse
+
+# Best practices
+---
+
+## Best practices
+--
+
+- Use Git and GitHub!
+--
+
+- `R CMD check`
+--
+
+  - `devtools::check()`
+  - Checks code for problems
+  - Undeclared dependencies
+  - Missing documentation
+  - Etc.
+--
+
+- Semantic versioning
+--
+
+  - `major.minor.patch`
+
+---
+class: center, middle, inverse
+
+# Next steps
+
+---
+
+## What's next?
+--
+
+- Unit tests
+--
+
+  - `tests/`
+  - `testthat`
+--
+
+- Compiled code
+--
+
+  - `src/`
+  - C, C++, Fortran
+--
+
+- Any other file you want!
+--
+
+  - `inst/`
+  - Python, Java, Perl, etc.
+
+
+---
+
+class: center, middle, inverse
+
+# Resources
+
+---
+
+## Getting started
+
+- *Writing and R Package from Scratch* by Hilary Parker
+  - https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/
+- *R Package Primer* by Karl Broman
+  - https://kbroman.org/pkg_primer/
+  
+---
+
+## Reference
+
+- *R Packages* by Hadley Wickham
+  - http://r-pkgs.had.co.nz/
+- *Writing R Extensions* by R Core Team
+  - https://cran.r-project.org/doc/manuals/r-release/R-exts.html
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
